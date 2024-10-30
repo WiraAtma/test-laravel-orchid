@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\BookEditScreen;
+use App\Orchid\Screens\BookListScreen;
+use App\Orchid\Screens\BookScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -133,6 +136,22 @@ Route::screen('post/{post?}', PostEditScreen::class)
 
 Route::screen('posts', PostListScreen::class)
     ->name('platform.post.list')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push('Post List');
+    });
+
+Route::screen('book/{book?}', BookEditScreen::class)
+    ->name('platform.book.edit')
+    ->breadcrumbs(function (Trail $trail){
+        return $trail
+            ->parent('platform.index')
+            ->push('Post List');
+    });
+
+Route::screen('books', BookListScreen::class)
+    ->name('platform.book.list')
     ->breadcrumbs(function (Trail $trail){
         return $trail
             ->parent('platform.index')
