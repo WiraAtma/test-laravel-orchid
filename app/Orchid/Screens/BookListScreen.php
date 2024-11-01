@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Book;
+use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\TD;
@@ -40,9 +41,11 @@ class BookListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Create new')
-                ->icon('pencil')
-                ->route('platform.book.edit'),
+            DropDown::make('Actions')
+                        ->icon('bs.three-dots-vertical')
+                        ->list([
+                            Link::make('Create')->href('book'),
+                        ]),
         ];
     }
 
@@ -55,7 +58,11 @@ class BookListScreen extends Screen
     {
         return [
             Layout::table('book', [
-                TD::make('name', 'Nama'),
+                TD::make('name', 'Nama')
+                    ->render(function (Book $book) {
+                        return Link::make($book->name)
+                            ->route('platform.book.edit', $book);
+                    }),
                 TD::make('author', 'Pengarang'),
                 TD::make('description', 'Deskripsi'),
                 TD::make('year', 'Tahun Terbit'),

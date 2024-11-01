@@ -147,7 +147,7 @@ Route::screen('book/{book?}', BookEditScreen::class)
     ->breadcrumbs(function (Trail $trail){
         return $trail
             ->parent('platform.index')
-            ->push('Post List');
+            ->push('Book List / Create');
     });
 
 Route::screen('books', BookListScreen::class)
@@ -155,6 +155,6 @@ Route::screen('books', BookListScreen::class)
     ->breadcrumbs(function (Trail $trail){
         return $trail
             ->parent('platform.index')
-            ->push('Post List');
+            ->push('Book List');
     });
     

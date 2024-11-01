@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
@@ -95,7 +96,7 @@ class BookEditScreen extends Screen
         ];
     }
 
-    public function createOrUpdate(Request $request) {
+    public function createOrUpdate(BookRequest $request) {
         $this->book->fill($request->get('book'))->save();
 
         Alert::info('You have successfully created a post.');
@@ -109,6 +110,6 @@ class BookEditScreen extends Screen
 
         Alert::info('You have successfully deleted the post.');
 
-        return redirect()->route('platform.post.list');
+        return redirect()->route('platform.book.list');
     }
 }
