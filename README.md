@@ -1,1 +1,1 @@
-Testing Laravel Orchid Project
+Testing Package Laravel Orchid Project
